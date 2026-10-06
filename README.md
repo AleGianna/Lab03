@@ -64,6 +64,18 @@ il riferimento allo strumento aggiunto.
 La classe `DepositoStrumenti` deve inoltre includere il metodo `strumenti_ordinati_per_marca()`, che restituisce
 un elenco degli strumenti presenti nel sistema ordinati alfabeticamente in base alla marca.
 
+> **💡 SUGGERIMENTO:**  
+> Per ordinare una lista è possibile utilizzare la funzione `sorted(lista, key=...)` oppure il metodo `lista.sort(key=...)`.
+> Per specificare l'attributo da usare nell'ordinamento si può usare `attrgetter`, importandolo dal modulo 
+> [`operator`](https://docs.python.org/3/library/operator.html):
+>
+> ```python
+> from operator import attrgetter
+> ```
+>
+> Una volta importato, `attrgetter("nome_attributo")` può essere usato come valore del parametro `key`, dove 
+> "nome_attributo" indica l'attributo in base al quale ordinare gli oggetti della lista.
+
 Per gestire i prestiti, la classe `DepositoStrumenti` deve implementare il metodo
 `nuovo_prestito(data, id_strumento, cognome_allievo)`. Ogni prestito sarà caratterizzato da un codice univoco,
 dalla data in cui è avvenuto, dal codice univoco dello strumento e dal cognome dell'allievo che sta effettuando il
