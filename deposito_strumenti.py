@@ -1,4 +1,5 @@
 import csv
+from operator import attrgetter
 class DepositoStrumenti:
     def __init__(self, nome, responsabile):
         """Inizializza gli attributi e le strutture dati"""
@@ -27,10 +28,10 @@ class DepositoStrumenti:
             for riga in reader:
                 if len(riga) >= 5:
                     # Estrae i dati dalla riga del CSV
-                    codice, tipo, marca, anno, valore = riga[0], riga[1], riga[2], riga[3], riga[4]
+                    codice, tipo, marca, anno_acquisto, valore = riga[0], riga[1], riga[2], riga[3], riga[4]
 
                     # Crea l'oggetto Strumento
-                    strumento = Strumento(codice, tipo, marca, anno, valore)
+                    strumento = Strumenti(codice, tipo, marca, anno_acquisto, valore)
 
                     # Lo aggiunge alla lista del deposito
                     self.strumenti.append(strumento)
@@ -38,11 +39,19 @@ class DepositoStrumenti:
     def aggiungi_strumento(self, tipo, marca, anno_acquisto, valore):
         """Aggiunge uno strumento nel deposito: aggiunge solo nel sistema e non aggiorna il file"""
         # TODO
+        if not self.strumenti:
+            codice = "S1"
+        else:
+            # Prende l'ultimo strumento, estrae la parte numerica dopo la 'S' e la incrementa
+            ultimo_codice = self.strumenti[-1].codice  # es. "S4"
+            numero = int(ultimo_codice[1:])  # diventa 4
+            codice = f"S{numero + 1}"  # diventa "S5"
+        strumento = Strumenti(codice, tipo, marca, anno_acquisto, valore)
 
     def strumenti_ordinati_per_marca(self):
         """Ordina gli strumenti per marca in ordine alfabetico"""
         # TODO
-
+        return sorted(self.strumenti, key=attrgetter('marca'))
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
         # TODO
