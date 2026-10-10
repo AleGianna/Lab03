@@ -70,6 +70,7 @@ class Strumenti:
         self.anno_acquisto = int(anno_acquisto)  # Convertito in numero intero (es. 2019)
         self.valore = float(valore)  # Convertito in numero decimale (es. 250.00)
 
+
     def __str__(self):
         """Rappresentazione testuale leggibile per l'utente (quando usi print)."""
         return f"[{self.codice}] {self.tipo} - {self.marca} ({self.anno_acquisto}) - Valore: €{self.valore:.2f}"
